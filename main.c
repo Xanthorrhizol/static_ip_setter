@@ -8,7 +8,7 @@
 
 // modes
 #define FIND	1
-#define RUN		0
+#define RUN	0
 
 //#define ARGV
 
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 
 	if (fp_ipconfig == NULL)
 	{
-		printf("ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù\n");
+		printf("íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤\n");
 		return FAIL;
 	}
 	while(fgets(buf_ipconfig, sizeof(buf_ipconfig), fp_ipconfig) != NULL)
@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
 		{
 			mode = RUN;
 		}
-		else if (strstr(buf_ipconfig, "ÀÌ´õ³İ") != NULL) {
+		else if (strstr(buf_ipconfig, "ì´ë”ë„·") != NULL) {
 			strtok_s(buf_ipconfig, ":", remained);
 			strcpy_s(ethernet, sizeof(ethernet), &buf_ipconfig[14]);
 			printf("\n your ethernet interface name : %s\n", ethernet);
