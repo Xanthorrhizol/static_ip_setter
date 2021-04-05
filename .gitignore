@@ -1,2 +1,12 @@
 .vs
 .vs/
+Release/ipsetter.tlog
+Release/ipsetter.Build.CppClean.log
+Release/ipsetter.exe.recipe
+Release/ipsetter.iobj
+Release/ipsetter.ipdb
+Release/ipsetter.log
+Release/ipsetter.pdb
+Release/ipsetter.vcxproj.FileListAbsolute.txt
+Release/main.obj
+Release/vc142.pdb
