@@ -10,8 +10,16 @@
 #define FIND	1
 #define RUN		0
 
-int main(void)
+//#define ARGV
+
+int main(int argc, char* argv[])
 {
+#ifdef ARGV
+	if (argc == 1) {
+		printf("\n Usage: %s <ip address to set>\n", argv[0]);
+		return FAIL;
+	}
+#endif
 	char buf_ipconfig[2048] = { 0 };
 	char buf_ipv4[100] = { 0 };
 	char remained[2048] = { 0 };
@@ -27,9 +35,11 @@ int main(void)
 	char command1[200] = { 0 };
 	char command2[200] = { 0 };
 	char command3[200] = { 0 };
+#ifdef ARGV
+	char* target_ip = argv[1];
+#else
 	char target_ip[100] = { 0 };
 	char temp_target_ip[100] = { 0 };
-
 	do {
 		printf("\n Enter the target ip you want\n");
 		scanf_s("%s", target_ip);
@@ -67,7 +77,7 @@ int main(void)
 	} while (strlen(target_ip) == 0);
 
 	strcpy_s(target_ip, sizeof(target_ip), temp_target_ip);
-
+#endif
 	system("ipconfig /all > ipconfig.txt");
 	fopen_s(&fp_ipconfig, "ipconfig.txt", "r");
 
