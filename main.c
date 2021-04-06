@@ -40,41 +40,37 @@ int main(int argc, char* argv[])
 #else
 	char target_ip[100] = { 0 };
 	char temp_target_ip[100] = { 0 };
+	int isErr = 0;
 	do {
+		isErr = 0;
+		memset(target_ip, 0, sizeof(target_ip));
 		printf("\n Enter the target ip you want\n");
 		scanf_s("%s", target_ip);
 		strcpy_s(temp_target_ip, sizeof(temp_target_ip), target_ip);
 		if (strlen(target_ip) > 16)
 		{
+			isErr = 1;
 			printf("\n ERROR : Invalid target ip\n");
-			memset(target_ip, 0, sizeof(target_ip));
 			continue;
 		}
-		for (int i = 0; i < strlen(target_ip); i++)
+		strtok_s(target_ip, ".", remained);
+		if (strlen(remained) == 0)
 		{
-			strtok_s(target_ip, ".", remained);
+			isErr = 1;
+			printf("\n ERROR : Invalid target ip\n");
+			continue;
+		}
+		for (int j = 1; j < 3; j++)
+		{
+			strtok_s(NULL, ".", remained);
 			if (strlen(remained) == 0)
 			{
+				isErr = 1;
 				printf("\n ERROR : Invalid target ip\n");
-				memset(target_ip, 0, sizeof(target_ip));
 				break;
 			}
-			for (int j = 1; j < 3; j++)
-			{
-				strtok_s(NULL, ".", remained);
-				if (strlen(remained) == 0)
-				{
-					printf("\n ERROR : Invalid target ip\n");
-					memset(target_ip, 0, sizeof(target_ip));
-					break;
-				}
-			}
-			if (strlen(target_ip) == 0)
-			{
-				continue;
-			}
 		}
-	} while (strlen(target_ip) == 0);
+	} while (isErr);
 
 	strcpy_s(target_ip, sizeof(target_ip), temp_target_ip);
 #endif
