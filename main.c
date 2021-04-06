@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 			}
 			if (strlen(target_ip) == 0)
 			{
-				break;
+				continue;
 			}
 		}
 	} while (strlen(target_ip) == 0);
